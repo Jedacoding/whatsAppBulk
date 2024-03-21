@@ -29,8 +29,23 @@ client.on("ready", () => {
                 const convertedPhone = phone
                     .replace(/-/g, "")
                     .replace("0", "62");
+                const options = {
+                    weekday: "long",
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                };
+                const currentDate = new Date().toLocaleDateString(
+                    "id-ID",
+                    options
+                );
 
-                const msg = "Selamat malam";
+                const msg =
+                    "Assalamu'alaikum Warahmatullahi Wabarakatuh\n\nKepada Yth, Bapak/Ibu " +
+                    name +
+                    "\n\nTabe', dengan penuh kerendahan hati kami sampaikan, bahwa jadwal Bapak/Ibu untuk membawa hidangan buka puasa ke Mesjid Al Muraaqabah telah tiba.\n\nTanggal:\n" +
+                    currentDate +
+                    "\n\nWaktu:\nSetelah sholat ashar - menjelang maghrib\n\nTempat Penyaluran:\nPintu Utama Masjid\n\nAtas partisipasi Bapak/Ibu dalam hal tersebut, Kami pengurus/panitia masjid mengucapkan Jazakumullah Khairan Katsiran, semoga amal ibadah kita diterima disisi Allah subhanahu wa ta'ala, aamiin ya rabbal 'alamin\n\nWassalamu'alaikum Warahmatullahi Wabarakatuh\n*_Badan Eksekutif Mesjid Al-Muraaqabah_*";
                 const chatId = convertedPhone + "@c.us";
 
                 const timeout = i * 5000;
