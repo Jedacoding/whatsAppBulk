@@ -24,15 +24,22 @@ client.on("ready", () => {
             const name = data[i][0];
             const phone = data[i][1];
 
-            const msg = "Selamat malam";
-            const chatId = phone.substring(1) + "@c.us";
+            if (phone) {
+                // change to local phone number
+                const convertedPhone = phone
+                    .replace(/-/g, "")
+                    .replace("0", "62");
 
-            const timeout = i * 1000;
+                const msg = "Selamat malam";
+                const chatId = convertedPhone + "@c.us";
 
-            setTimeout(() => {
-                client.sendMessage(chatId, msg);
-                console.log(`Message Sent to Client ${name}`);
-            }, timeout);
+                const timeout = i * 5000;
+
+                setTimeout(() => {
+                    client.sendMessage(chatId, msg);
+                    console.log(`Message Sent to Client ${name}`);
+                }, timeout);
+            }
         }
     });
 });
