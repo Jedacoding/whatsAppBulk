@@ -26,8 +26,8 @@ client.on("ready", () => {
 
         await Promise.all(
             data.map(async (item, i) => {
-                const name = item[1];
-                const phone = item[3];
+                const name = item[0];
+                const phone = item[1];
 
                 if (phone) {
                     // change to local phone number
