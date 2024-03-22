@@ -1,6 +1,7 @@
 const readExcel = require("read-excel-file/node");
 const qrcode = require("qrcode-terminal");
 const { Client, LocalAuth } = require("whatsapp-web.js");
+require("dotenv").config();
 
 const client = new Client({
     authStrategy: new LocalAuth(),
@@ -20,7 +21,7 @@ client.on("ready", () => {
     let success = 0;
     let failed = 0;
 
-    readExcel("./public/blast.xlsx").then(async (data) => {
+    readExcel("./public/" + process.env.BLAST_FILE_NAME).then(async (data) => {
         data.shift();
 
         await Promise.all(
