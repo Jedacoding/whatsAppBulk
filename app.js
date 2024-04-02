@@ -5,6 +5,11 @@ require("dotenv").config();
 
 const client = new Client({
     authStrategy: new LocalAuth(),
+    webVersionCache: {
+        type: "remote",
+        remotePath:
+            "https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2410.1.html",
+    },
 });
 
 client.on("loading_screen", (percent, message) => {
@@ -15,7 +20,7 @@ client.on("authenticated", () => {
     console.log("AUTHENTICATED");
 });
 
-client.on("ready", () => {
+client.on("ready", async () => {
     console.log("Client is ready!");
 
     let success = 0;
@@ -51,6 +56,7 @@ client.on("ready", () => {
                         "\n\nTabe', dengan penuh kerendahan hati kami sampaikan, bahwa jadwal Bapak/Ibu untuk membawa hidangan buka puasa ke Mesjid Al Muraaqabah telah tiba.\n\nTanggal:\n" +
                         currentDate +
                         "\n\nWaktu:\nSetelah sholat ashar - menjelang maghrib\n\nTempat Penyaluran:\nPintu Utama Masjid\n\nAtas partisipasi Bapak/Ibu dalam hal tersebut, Kami pengurus/panitia masjid mengucapkan Jazakumullah Khairan Katsiran, semoga amal ibadah kita diterima disisi Allah subhanahu wa ta'ala, aamiin ya rabbal 'alamin\n\nWassalamu'alaikum Warahmatullahi Wabarakatuh\n*_Badan Eksekutif Mesjid Al-Muraaqabah_*";
+                    // const msg = process.env.ACTIVE_MESSAGE;
                     const chatId = convertedPhone + "@c.us";
 
                     const timeout = i * 5000;
